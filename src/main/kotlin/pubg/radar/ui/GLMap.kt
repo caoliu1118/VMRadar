@@ -103,7 +103,7 @@ class GLMap : InputAdapter(), ApplicationListener, GameListener {
 
     fun show() {
         val config = Lwjgl3ApplicationConfiguration()
-        config.setTitle("")
+        config.setTitle("66 made it work")
         config.useOpenGL3(false, 3, 2)
         config.setWindowedMode(800, 800)
         config.setResizable(true)
@@ -140,7 +140,7 @@ class GLMap : InputAdapter(), ApplicationListener, GameListener {
     private lateinit var compaseFontShadow: BitmapFont
     private lateinit var littleFontShadow: BitmapFont
 
-
+    //8k need
     private val tileZooms = listOf("256", "512", "1024", "2048" ,"4096"/*, "8192"*/)
     private val tileRowCounts = listOf(1, 2, 4, 8 , 16/*, 32*/)
     private val tileSizes = listOf(819200f, 409600f, 204800f, 102400f, 51200f/*, 25600f*/)
@@ -396,6 +396,7 @@ class GLMap : InputAdapter(), ApplicationListener, GameListener {
         val cameraTileScale = Math.max(windowWidth, windowHeight) / camera.zoom
         val useScale: Int
         useScale = when {
+//			cameraTileScale > 8192 -> 5
             cameraTileScale > 4096 -> 4
             cameraTileScale > 2048 -> 3
             cameraTileScale > 1024 -> 2
@@ -478,11 +479,12 @@ class GLMap : InputAdapter(), ApplicationListener, GameListener {
             spriteBatch.draw(hubpanelblank, 30f, windowHeight - 60f)
 
             // This is what you were trying to do
+			//武器
             if (filterWeapon != 1)
                 espFont.draw(spriteBatch, "WEAPON", 40f, windowHeight - 25f)
             else
                 espFontShadow.draw(spriteBatch, "WEAPON", 39f, windowHeight - 25f)
-
+            //配件
             if (filterAttach != 1)
                 espFont.draw(spriteBatch, "ATTACH", 40f, windowHeight - 42f)
             else
@@ -556,35 +558,37 @@ class GLMap : InputAdapter(), ApplicationListener, GameListener {
 
 
         attachToFilter = if (filterAttach != 1) {
-            arrayListOf("")
+            arrayListOf("S.Loops","U.Ext","U.ExtQ","Choke")
         } else {
             arrayListOf("AR.Stock", "S.Loops", "CheekPad", "A.Grip", "V.Grip", "U.Ext", "AR.Ext", "S.Ext", "U.ExtQ", "AR.ExtQ", "S.ExtQ", "Choke", "AR.Comp", "FH", "U.Supp", "AR.Supp", "S.Supp")
         }
-
+        
+		//HK416  always
         weaponsToFilter = if (filterWeapon != 1) {
-            arrayListOf("")
+            arrayListOf( "Vector","DP28","UZI")
         } else {
-            arrayListOf("M16A4", "HK416", "Kar98k", "SCAR-L", "AK47", "SKS", "Mini14", "DP28", "UMP", "Vector", "UZI", "Pan")
+            arrayListOf("M16A4", "Kar98k", "SCAR-L", "AK47", "SKS", "Mini14", "DP28", "UMP", "Vector", "UZI", "Pan")
         }
 
         healsToFilter = if (filterHeals != 1) {
-            arrayListOf("")
+            arrayListOf("Bandage")
         } else {
             arrayListOf("Bandage", "FirstAid", "MedKit", "Drink", "Pain", "Syringe")
         }
 
         ammoToFilter = if (filterAmmo != 1) {
-            arrayListOf("")
+            arrayListOf("9mm", "45mm")
         } else {
             arrayListOf("9mm", "45mm", "556mm", "762mm", "300mm")
         }
 
         throwToFilter = if (filterThrow != 1) {
-            arrayListOf("")
+            arrayListOf("Grenade","FlashBang","SmokeBomb")
         } else {
             arrayListOf("Grenade","FlashBang","SmokeBomb","Molotov")
         }
-
+        
+		//level3 always
         level2Filter = if (filterLvl2 != 1) {
             arrayListOf("")
         } else {
